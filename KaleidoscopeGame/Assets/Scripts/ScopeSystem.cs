@@ -24,32 +24,14 @@ public class ScopeSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(spriteAcanFusion && spriteBcanFusion)
-        {
-            canFusion = true;
-        }
-        else
-        {
-            canFusion = false;
-        }*/
         KeyCtrl();
         FusionCheck();
         LevelUp();
     }
-    /*
+    
     private void FusionCheck()
     {
-        var canFusionCheckCount = 0;
-        for (int i = 0; i < allSprites.Count; i++)
-        {
-            if (allSprites[i].canFusion && allSprites[i].isRotate && allSprites[i].isFusion == false)
-            {
-                canFusionCheckCount++;
-            }
-        }
-        Debug.Log(canFusionCheckCount);
-        if (canFusionCheckCount >= 2)
+        if(allSprites[level].canFusion && allSprites[level - 1].canFusion)
         {
             canFusion = true;
         }
@@ -58,39 +40,7 @@ public class ScopeSystem : MonoBehaviour
             canFusion = false;
         }
     }
-    */
-
-    private void FusionCheck()
-    {
-
-        var errorAngle = Mathf.Abs(allSprites[level].errorAngle - allSprites[level - 1].errorAngle);
-        var canFusionCount = 0;
-        /*
-        if((allSprites[level - 1].transform.rotation.eulerAngles.z + errorAngle) 
-            %allSprites[level -1].nextFusionAngle < allSprites[level - 1].fusionLimit)
-        {
-            canFusionCount++;
-            Debug.Log("a");
-            //StartCoroutine(CanFusionCheckProcessA());
-        }
-        */
-        if((allSprites[level].transform.rotation.eulerAngles.z - errorAngle)
-            % allSprites[level].nextFusionAngle < allSprites[level].fusionLimit)
-        {
-            canFusionCount++;
-            Debug.Log("b");
-            //StartCoroutine(CanFusionCheckProcessB());
-        }
-        if(canFusionCount > 0)
-        {
-            canFusion = true;
-        }
-        else
-        {
-            canFusion = false;
-        }
-    }
-
+    
     private IEnumerator CanFusionCheckProcessA()
     {
         if (isFusionCheckA) yield break;
@@ -130,15 +80,16 @@ public class ScopeSystem : MonoBehaviour
     {
         if (preLv != level)
         {
-            if (preLv != 1) allSprites[preLv-1].isRotate = false;
-            allSprites[preLv].isRotate = false;
-            allSprites[preLv].transform.parent = allSprites[0].transform;
-            allSprites[preLv].errorAngle = allSprites[preLv].ErrorAngle();
-            allSprites[level].errorAngle = allSprites[preLv].ErrorAngle();
-            //allSprites[preLv - 1].rotateSpeed = allSprites[preLv].rotateSpeed;
-            cameras[preLv - 1].gameObject.SetActive(false);
-            cameras[preLv].gameObject.SetActive(true);
-            allSprites[level * 2 - 2].isRotate = true;
+            allSprites[preLv-1].isFusion = true;
+            allSprites[preLv].isFusion = true;
+            //allSprites[preLv - 1].canFusion = false;
+            //allSprites[preLv].canFusion = false;
+            if(preLv < cameras.Count)
+            {
+                cameras[preLv - 1].gameObject.SetActive(false);
+                cameras[preLv].gameObject.SetActive(true);
+            }
+            allSprites[level].isRotate = true;
             preLv = level;
         }
     }

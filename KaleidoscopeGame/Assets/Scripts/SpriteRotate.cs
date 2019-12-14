@@ -7,7 +7,8 @@ public class SpriteRotate : MonoBehaviour
     public bool isRotate;
     [SerializeField][Range(-1,1)] private int rotateDirection;
     [SerializeField] [Range(-1, 1)] private int fusionDirection;
-    [SerializeField] public float rotateSpeed;
+    public float rotateSpeed;
+    public float fusionSpeed;
     //[SerializeField] private List<float> fusionAngles;
     [SerializeField] public float preFusionAngle;
     [SerializeField] public float nextFusionAngle;
@@ -71,7 +72,25 @@ public class SpriteRotate : MonoBehaviour
     {
         if(isRotate && isFusion)
         {
-            transform.Rotate(0, 0, fusionDirection * rotateSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, fusionDirection * fusionSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.parent.CompareTag("Player"))
+        {
+            Debug.Log("collide");
+            canFusion = true;
+        }
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.parent.CompareTag("Player"))
+        {
+            canFusion = false;
         }
     }
 }
