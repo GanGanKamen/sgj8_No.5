@@ -205,31 +205,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotate: 0
-  rotateDirection: -1
-  fusionDirection: -1
-  rotateSpeed: 2
-  fusionAngle: 0
-  fusionAngles:
-  - 0
-  - 22.5
-  - 45
-  - 67.5
-  - 90
-  - 112.5
-  - 135
-  - 157.5
-  - 180
-  - 202.5
-  - 225
-  - 247.5
-  - 270
-  - 292.5
-  - 315
-  - 337.5
-  - 360
+  rotateDirection: 1
+  fusionDirection: 1
+  rotateSpeed: 10
+  preFusionAngle: 0
+  nextFusionAngle: 45
   canFusion: 0
   isFusion: 0
-  fusionLimit: 1
+  startAngle: 0
+  errorAngle: 0
+  fusionLimit: 3
   debug: 0
   angleZ: 0
 --- !u!1 &376242208
@@ -335,28 +320,13 @@ MonoBehaviour:
   rotateDirection: 1
   fusionDirection: 1
   rotateSpeed: 10
-  fusionAngle: 0
-  fusionAngles:
-  - 0
-  - 22.5
-  - 45
-  - 67.5
-  - 90
-  - 112.5
-  - 135
-  - 157.5
-  - 180
-  - 202.5
-  - 225
-  - 247.5
-  - 270
-  - 292.5
-  - 315
-  - 337.5
-  - 360
+  preFusionAngle: 0
+  nextFusionAngle: 22.5
   canFusion: 0
   isFusion: 0
-  fusionLimit: 0.5
+  startAngle: 0
+  errorAngle: 0
+  fusionLimit: 3
   debug: 0
   angleZ: 0
 --- !u!212 &479732702
@@ -416,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 479732700}
   m_LocalRotation: {x: 0, y: 0, z: 0.098017134, w: 0.9951847}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -455,28 +425,13 @@ MonoBehaviour:
   rotateDirection: -1
   fusionDirection: 1
   rotateSpeed: 10
-  fusionAngle: 0
-  fusionAngles:
-  - 0
-  - 22.5
-  - 45
-  - 67.5
-  - 90
-  - 112.5
-  - 135
-  - 157.5
-  - 180
-  - 202.5
-  - 225
-  - 247.5
-  - 270
-  - 292.5
-  - 315
-  - 337.5
-  - 360
+  preFusionAngle: 0
+  nextFusionAngle: 22.5
   canFusion: 0
   isFusion: 0
-  fusionLimit: 0.5
+  startAngle: 0
+  errorAngle: 0
+  fusionLimit: 3
   debug: 0
   angleZ: 0
 --- !u!212 &900676768
@@ -536,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 900676766}
   m_LocalRotation: {x: 0, y: 0, z: -0.098017134, w: 0.9951847}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -594,7 +549,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 6
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -650,7 +605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1234029949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,27 +622,12 @@ MonoBehaviour:
   rotateDirection: 1
   fusionDirection: 1
   rotateSpeed: 2
-  fusionAngle: 0
-  fusionAngles:
-  - 0
-  - 22.5
-  - 45
-  - 67.5
-  - 90
-  - 112.5
-  - 135
-  - 157.5
-  - 180
-  - 202.5
-  - 225
-  - 247.5
-  - 270
-  - 292.5
-  - 315
-  - 337.5
-  - 360
+  preFusionAngle: 0
+  nextFusionAngle: 0
   canFusion: 0
   isFusion: 0
+  startAngle: 0
+  errorAngle: 0
   fusionLimit: 1
   debug: 0
   angleZ: 0
@@ -748,7 +688,7 @@ Transform:
   m_GameObject: {fileID: 1234029948}
   m_LocalRotation: {x: 0, y: 0, z: 0.100188084, w: 0.99496853}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -931,7 +871,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 20
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -1029,31 +969,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotate: 0
-  rotateDirection: 1
-  fusionDirection: -1
-  rotateSpeed: 2
-  fusionAngle: 0
-  fusionAngles:
-  - 0
-  - 22.5
-  - 45
-  - 67.5
-  - 90
-  - 112.5
-  - 135
-  - 157.5
-  - 180
-  - 202.5
-  - 225
-  - 247.5
-  - 270
-  - 292.5
-  - 315
-  - 337.5
-  - 360
+  rotateDirection: -1
+  fusionDirection: 1
+  rotateSpeed: 10
+  preFusionAngle: 0
+  nextFusionAngle: 30
   canFusion: 0
   isFusion: 0
-  fusionLimit: 1
+  startAngle: 0
+  errorAngle: 0
+  fusionLimit: 3
   debug: 0
   angleZ: 0
 --- !u!1 &1695387310
@@ -1286,7 +1211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1781986693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,27 +1228,12 @@ MonoBehaviour:
   rotateDirection: -1
   fusionDirection: 1
   rotateSpeed: 2
-  fusionAngle: 0
-  fusionAngles:
-  - 0
-  - 22.5
-  - 45
-  - 67.5
-  - 90
-  - 112.5
-  - 135
-  - 157.5
-  - 180
-  - 202.5
-  - 225
-  - 247.5
-  - 270
-  - 292.5
-  - 315
-  - 337.5
-  - 360
+  preFusionAngle: 0
+  nextFusionAngle: 0
   canFusion: 0
   isFusion: 0
+  startAngle: 0
+  errorAngle: 0
   fusionLimit: 1
   debug: 0
   angleZ: 0
@@ -1384,7 +1294,7 @@ Transform:
   m_GameObject: {fileID: 1781986692}
   m_LocalRotation: {x: 0, y: 0, z: -0.100188084, w: 0.99496853}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9

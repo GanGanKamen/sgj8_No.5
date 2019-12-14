@@ -7,25 +7,37 @@ public class SpriteRotate : MonoBehaviour
     public bool isRotate;
     [SerializeField][Range(-1,1)] private int rotateDirection;
     [SerializeField] [Range(-1, 1)] private int fusionDirection;
-    [SerializeField] private float rotateSpeed;
-    [SerializeField] private float fusionAngle;
-    [SerializeField] private List<float> fusionAngles;
+    [SerializeField] public float rotateSpeed;
+    //[SerializeField] private List<float> fusionAngles;
+    [SerializeField] public float preFusionAngle;
+    [SerializeField] public float nextFusionAngle;
     public bool canFusion = false;
     public bool isFusion = false;
-    [SerializeField] private float fusionLimit;
+
+    public float startAngle;
+    public float errorAngle;
+    [SerializeField] public float fusionLimit;
     [SerializeField] private float debug;
     [SerializeField] private float angleZ;
     // Start is called before the first frame update
     void Start()
     {
-
+        startAngle = transform.rotation.eulerAngles.z;
+        errorAngle = ErrorAngle();
     }
 
     // Update is called once per frame
     void Update()
     {
+        angleZ = transform.rotation.eulerAngles.z;
         RotateMove();
         FusionAction();
+    }
+
+    public float ErrorAngle()
+    {
+        Debug.Log(transform.rotation.eulerAngles.z % nextFusionAngle);
+        return transform.rotation.eulerAngles.z % nextFusionAngle;
     }
 
     private void RotateMove()
@@ -34,16 +46,7 @@ public class SpriteRotate : MonoBehaviour
         {
             transform.Rotate(0, 0, rotateDirection * rotateSpeed * Time.deltaTime);
             //debug = Mathf.Abs((transform.rotation.eulerAngles.z + errorAngle) % fusionAngle);
-            angleZ = transform.rotation.eulerAngles.z;
             /*
-            if (Mathf.Abs((transform.rotation.eulerAngles.z + errorAngle) % fusionAngle) - errorAngle2 < fusionLimit)
-            {
-                canFusion = true;
-            }
-            else
-            {
-                canFusion = false;
-            }*/
             var canFusionCount = 0;
             for(int i = 0; i < fusionAngles.Count; i++)
             {
@@ -60,6 +63,7 @@ public class SpriteRotate : MonoBehaviour
             {
                 canFusion = false;
             }
+            */
         }
     }
 
