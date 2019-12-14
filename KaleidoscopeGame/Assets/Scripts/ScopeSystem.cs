@@ -12,6 +12,8 @@ public class ScopeSystem : MonoBehaviour
     public bool canFusion = false;
     private bool isFusionCheckA = false;
     private bool isFusionCheckB = false;
+    private bool isCoolDown = false;
+    [SerializeField] private float touchCoolTime;
     bool spriteAcanFusion = false;
     bool spriteBcanFusion = false;
     // Start is called before the first frame update
@@ -31,14 +33,17 @@ public class ScopeSystem : MonoBehaviour
     
     private void FusionCheck()
     {
-        if(allSprites[level].canFusion && allSprites[level - 1].canFusion)
+        if (level < allSprites.Count)
         {
-            canFusion = true;
-        }
-        else
-        {
-            canFusion = false;
-        }
+            if (allSprites[level].canFusion && allSprites[level - 1].canFusion)
+            {
+                canFusion = true;
+            }
+            else
+            {
+                canFusion = false;
+            }
+        }   
     }
     
     private IEnumerator CanFusionCheckProcessA()
@@ -69,11 +74,43 @@ public class ScopeSystem : MonoBehaviour
 
     private void KeyCtrl()
     {
-        if (Input.GetMouseButtonDown(0) && canFusion)
+        if (Input.GetMouseButtonDown(0))
         {
-            level++;
-            canFusion = false;
+            if (isCoolDown) return;
+            Vector3 tapPosition = Input.mousePosition;
+            tapPosition.z = 10;
+            if (canFusion)
+            {
+                if (level < allSprites.Count)
+                {
+                    level++;                   
+                }
+                else
+                {
+                    allSprites[level].isFusion = true;
+                    Debug.Log("stage clear");
+                }
+                canFusion = false;
+                GameObject tapObj = Instantiate<GameObject>(ResourcesMng.ResourcesLoad("Tap_yes"), Vector3.zero,Quaternion.identity);
+                tapObj.transform.position = Camera.main.ScreenToWorldPoint(tapPosition);
+            }
+
+            else
+            {
+                GameObject tapObj = Instantiate<GameObject>(ResourcesMng.ResourcesLoad("Tap_no"), Vector3.zero, Quaternion.identity);
+                tapObj.transform.position = Camera.main.ScreenToWorldPoint(tapPosition);
+                Debug.Log(tapObj.transform.position);
+            }
+            StartCoroutine(CoolDown());
         }
+    }
+
+    private IEnumerator CoolDown()
+    {
+        isCoolDown = true;
+        yield return new WaitForSeconds(touchCoolTime);
+        isCoolDown = false;
+        yield break;
     }
 
     private void LevelUp()
@@ -88,8 +125,8 @@ public class ScopeSystem : MonoBehaviour
             {
                 cameras[preLv - 1].gameObject.SetActive(false);
                 cameras[preLv].gameObject.SetActive(true);
+                allSprites[level].isRotate = true;
             }
-            allSprites[level].isRotate = true;
             preLv = level;
         }
     }
