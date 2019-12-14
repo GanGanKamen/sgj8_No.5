@@ -45,7 +45,7 @@ public class ScopeSystem : MonoBehaviour
             canFusion = false;
         }
     }
-    */
+    
     private void FusionCheck()
     {
         if(allSprites[level * 2 - 2].canFusion || allSprites[level * 2 - 1].canFusion)
@@ -57,7 +57,7 @@ public class ScopeSystem : MonoBehaviour
             canFusion = false;
         }
     }
-
+    */
     private void KeyCtrl()
     {
         if (Input.GetMouseButtonDown(0) && canFusion)
