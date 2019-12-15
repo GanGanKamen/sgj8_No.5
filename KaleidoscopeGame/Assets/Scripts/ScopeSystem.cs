@@ -22,11 +22,14 @@ public class ScopeSystem : MonoBehaviour
     [SerializeField] private GameObject flashObj;
 
     public GameObject resultUI;
+
+    private bool checkCanFusionTrigger;
     // Start is called before the first frame update
     void Start()
     {
         level = 1;
         preLv = level;
+        checkCanFusionTrigger = canFusion;
     }
 
     // Update is called once per frame
@@ -35,6 +38,11 @@ public class ScopeSystem : MonoBehaviour
         KeyCtrl();
         FusionCheck();
         LevelUp();
+        if(checkCanFusionTrigger != canFusion)
+        {
+
+            checkCanFusionTrigger = canFusion;
+        }
     }
     
     private void FusionCheck()

@@ -12,17 +12,26 @@ public class ResultUI : MonoBehaviour
     [SerializeField] private GameObject nextText;
     public float score = 0;
     public bool isOver;
+    private bool trigger;
 
-   
+    [SerializeField] private GameObject successEffect;
     // Start is called before the first frame update
     void Start()
     {
         mainUI.scoreText.gameObject.SetActive(false);
+        trigger = false;
+        successEffect.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(trigger != isOver)
+        {
+            trigger = true;
+            GetComponent<AudioSource>().PlayOneShot(ResourcesMng.AudioClipLoad("Voice/TapT1576374544351"));
+        }
+
         if(score < mainUI.score)
         {
             score += Time.deltaTime * scoreChangeSpeed;
