@@ -20,4 +20,9 @@ public class ResourcesMng : MonoBehaviour
     {
         return Resources.Load<GameObject>("ResourcesMng/" + name);
     }
+
+    static public AudioClip AudioClipLoad(string name)
+    {
+        return Resources.Load<AudioClip>("SoundMng/" + name);
+    }
 }

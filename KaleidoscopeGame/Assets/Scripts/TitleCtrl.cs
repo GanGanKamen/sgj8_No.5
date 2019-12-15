@@ -59,6 +59,7 @@ public class TitleCtrl : MonoBehaviour
         if (startGame) yield break;
         startGame = true;
         fadeNum = 1;
+        GetComponent<AudioSource>().Play();
         while(fadeNum != 0)
         {
             yield return null;

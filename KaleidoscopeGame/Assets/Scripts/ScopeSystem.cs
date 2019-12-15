@@ -16,6 +16,9 @@ public class ScopeSystem : MonoBehaviour
     [SerializeField] private float touchCoolTime;
     bool spriteAcanFusion = false;
     bool spriteBcanFusion = false;
+    [SerializeField] private MainUI mainUI;
+
+    [SerializeField] private GameObject flashObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +41,12 @@ public class ScopeSystem : MonoBehaviour
             if (allSprites[level].canFusion && allSprites[level - 1].canFusion)
             {
                 canFusion = true;
+                flashObj.SetActive(true);
             }
             else
             {
                 canFusion = false;
+                flashObj.SetActive(false);
             }
         }   
     }
@@ -79,27 +84,26 @@ public class ScopeSystem : MonoBehaviour
             if (isCoolDown) return;
             Vector3 tapPosition = Input.mousePosition;
             tapPosition.z = 10;
+            if (level < allSprites.Count)
+            {
+                level++;
+            }
+            flashObj.SetActive(false);
             if (canFusion)
             {
-                if (level < allSprites.Count)
-                {
-                    level++;                   
-                }
-                else
-                {
-                    allSprites[level].isFusion = true;
-                    Debug.Log("stage clear");
-                }
-                canFusion = false;
                 GameObject tapObj = Instantiate<GameObject>(ResourcesMng.ResourcesLoad("Tap_yes"), Vector3.zero,Quaternion.identity);
                 tapObj.transform.position = Camera.main.ScreenToWorldPoint(tapPosition);
+                if (GetComponent<AudioSource>() != null) GetComponent<AudioSource>().PlayOneShot(ResourcesMng.AudioClipLoad("SE/good-job-se"));
+                mainUI.Good();
+                canFusion = false;
             }
 
             else
             {
                 GameObject tapObj = Instantiate<GameObject>(ResourcesMng.ResourcesLoad("Tap_no"), Vector3.zero, Quaternion.identity);
                 tapObj.transform.position = Camera.main.ScreenToWorldPoint(tapPosition);
-                Debug.Log(tapObj.transform.position);
+                if (GetComponent<AudioSource>() != null) GetComponent<AudioSource>().PlayOneShot(ResourcesMng.AudioClipLoad("SE/miss"));
+                mainUI.Bad();
             }
             StartCoroutine(CoolDown());
         }
@@ -125,8 +129,15 @@ public class ScopeSystem : MonoBehaviour
             {
                 cameras[preLv - 1].gameObject.SetActive(false);
                 cameras[preLv].gameObject.SetActive(true);
-                allSprites[level].isRotate = true;
+                
             }
+            if (level < allSprites.Count) allSprites[level].isRotate = true;
+            if(level == allSprites.Count)
+            {
+                //allSprites[level].isFusion = true;
+                Debug.Log("stage clear");
+            }
+            flashObj.transform.localScale = new Vector3(level, level, level);
             preLv = level;
         }
     }
