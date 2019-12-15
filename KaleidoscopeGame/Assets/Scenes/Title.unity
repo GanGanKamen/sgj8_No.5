@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe4226633e42cb4ba3d711213682b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Tutorial
+  nextSceneName: Level1
   fadeImage: {fileID: 1810965196}
   fadeSpeed: 0.5
   fadeNum: 0

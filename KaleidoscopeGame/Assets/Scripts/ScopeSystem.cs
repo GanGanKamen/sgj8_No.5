@@ -7,6 +7,7 @@ public class ScopeSystem : MonoBehaviour
 {
     public List<SpriteRotate> allSprites;
     public List<CinemachineVirtualCamera> cameras;
+    public GameObject finalCamera;
     public int level;
     private int preLv;
     public bool canFusion = false;
@@ -19,6 +20,8 @@ public class ScopeSystem : MonoBehaviour
     [SerializeField] private MainUI mainUI;
 
     [SerializeField] private GameObject flashObj;
+
+    public GameObject resultUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +51,8 @@ public class ScopeSystem : MonoBehaviour
                 canFusion = false;
                 flashObj.SetActive(false);
             }
-        }   
+        }
+        else canFusion = true;
     }
     
     private IEnumerator CanFusionCheckProcessA()
@@ -84,7 +88,7 @@ public class ScopeSystem : MonoBehaviour
             if (isCoolDown) return;
             Vector3 tapPosition = Input.mousePosition;
             tapPosition.z = 10;
-            if (level < allSprites.Count)
+            if (level <= allSprites.Count)
             {
                 level++;
             }
@@ -121,24 +125,37 @@ public class ScopeSystem : MonoBehaviour
     {
         if (preLv != level)
         {
-            allSprites[preLv-1].isFusion = true;
-            allSprites[preLv].isFusion = true;
-            //allSprites[preLv - 1].canFusion = false;
-            //allSprites[preLv].canFusion = false;
-            if(preLv < cameras.Count)
+           if(level < allSprites.Count)
             {
-                cameras[preLv - 1].gameObject.SetActive(false);
-                cameras[preLv].gameObject.SetActive(true);
-                
+                allSprites[preLv - 1].isFusion = true;
+                allSprites[preLv].isFusion = true;
+                //allSprites[preLv - 1].canFusion = false;
+                //allSprites[preLv].canFusion = false;
+                if (preLv < cameras.Count)
+                {
+                    cameras[preLv - 1].gameObject.SetActive(false);
+                    cameras[preLv].gameObject.SetActive(true);
+
+                }
+                allSprites[level].isRotate = true;
+
             }
-            if (level < allSprites.Count) allSprites[level].isRotate = true;
-            if(level == allSprites.Count)
+            else if(level >= allSprites.Count)
             {
-                //allSprites[level].isFusion = true;
+                allSprites[level -1].isFusion = true;
                 Debug.Log("stage clear");
+                GameClear();
             }
             flashObj.transform.localScale = new Vector3(level, level, level);
             preLv = level;
         }
+    }
+
+    private void GameClear()
+    {
+        allSprites[level -1].isFusion = true;
+        finalCamera.SetActive(true);
+        resultUI.SetActive(true);
+        Destroy(gameObject);
     }
 }
