@@ -171,13 +171,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 45
   nextFusionAngle: 45
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &281690471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -299,13 +295,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 45
   nextFusionAngle: 90
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &282867349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -496,13 +488,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 90
   nextFusionAngle: 15
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &400911743
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -624,13 +612,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 90
   nextFusionAngle: 45
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &408537636
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -806,13 +790,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 0
   nextFusionAngle: 90
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &479732702
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1101,13 +1081,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 45
   nextFusionAngle: 0
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &556544112
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1253,13 +1229,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 45
   nextFusionAngle: 45
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &777643477
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1381,13 +1353,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 22.5
   nextFusionAngle: 45
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &968048720
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1509,13 +1477,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 45
   nextFusionAngle: 45
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &1170917644
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1609,7 +1573,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1782,13 +1746,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 22.5
   nextFusionAngle: 22.5
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &1437816198
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2173,13 +2133,9 @@ MonoBehaviour:
   fusionSpeed: 2
   preFusionAngle: 15
   nextFusionAngle: 22.5
-  canFusion: 0
   isFusion: 0
-  startAngle: 0
-  errorAngle: 0
   fusionLimit: 3
-  debug: 0
-  angleZ: 0
+  changeCamera: 1
 --- !u!212 &1819258544
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2684,6 +2640,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925096899299294253, guid: fb4897ff026a927428b9787784dde2b3,
+        type: 3}
+      propertyPath: nextSceneName
+      value: NewLevel2
       objectReference: {fileID: 0}
     - target: {fileID: 8925096899299294250, guid: fb4897ff026a927428b9787784dde2b3,
         type: 3}

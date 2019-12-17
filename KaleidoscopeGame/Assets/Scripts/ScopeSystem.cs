@@ -36,7 +36,7 @@ public class ScopeSystem : MonoBehaviour
     void Update()
     {
         KeyCtrl();
-        FusionCheck();
+        //FusionCheck();
         LevelUp();
         if(checkCanFusionTrigger != canFusion)
         {
@@ -44,7 +44,7 @@ public class ScopeSystem : MonoBehaviour
             checkCanFusionTrigger = canFusion;
         }
     }
-    
+    /*
     private void FusionCheck()
     {
         if (level < allSprites.Count)
@@ -61,7 +61,7 @@ public class ScopeSystem : MonoBehaviour
             }
         }
         else canFusion = true;
-    }
+    }*/
     
     private IEnumerator CanFusionCheckProcessA()
     {

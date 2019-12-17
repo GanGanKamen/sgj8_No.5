@@ -22,6 +22,8 @@ public class NewScopeSystem : MonoBehaviour
     public int maxLevel;
 
     private float startTime;
+
+    private int cameraNum = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +52,7 @@ public class NewScopeSystem : MonoBehaviour
 
     private void FusionCheck()
     {
-        if(level < maxLevel)
+        if(level <= maxLevel)
         {
             var remainderAngle1 = (allSprites[level -1].transform.localRotation.eulerAngles.z + 360f) %
             allSprites[level-1].nextFusionAngle;
@@ -115,10 +117,11 @@ public class NewScopeSystem : MonoBehaviour
             {
                 allSprites[preLv - 1].isFusion = true;
                 allSprites[preLv].isFusion = true;
-                if (preLv < cameras.Count)
+                if (cameraNum < cameras.Count -1 && allSprites[level].changeCamera)
                 {
-                    cameras[preLv - 1].gameObject.SetActive(false);
-                    cameras[preLv].gameObject.SetActive(true);
+                    cameraNum++;
+                    cameras[cameraNum -1].gameObject.SetActive(false);
+                    cameras[cameraNum].gameObject.SetActive(true);
 
                 }
                 allSprites[level].isRotate = true;
