@@ -37,7 +37,6 @@ public class SpriteRotate : MonoBehaviour
 
     public float ErrorAngle()
     {
-        Debug.Log(transform.rotation.eulerAngles.z % nextFusionAngle);
         return transform.rotation.eulerAngles.z % nextFusionAngle;
     }
 
